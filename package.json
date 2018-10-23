@@ -3,15 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apollo-boost": "0.1.17",
+    "express": "4.16.4",
+    "graphql": "14.0.2",
     "react": "^16.5.2",
+    "react-apollo": "2.2.4",
+    "react-app-rewire-hot-loader": "1.0.3",
+    "react-app-rewired": "1.6.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.5"
+    "react-hot-loader": "4.3.11",
+    "react-router-dom": "4.3.1",
+    "react-scripts": "2.0.5",
+    "styled-components": "4.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server.mjs",
+    "dev": "react-app-rewired start",
+    "build": "react-scripts build && mv build user_app",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject",
+    "stylelint": "stylelint **/*.js",
+    "prettier": "prettier --write **/*.js",
+    "lint": "npm run prettier && npm run stylelint",
+    "heroke-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +35,13 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "stylelint": "9.6.0",
+    "stylelint-config-recommended": "2.1.0",
+    "stylelint-config-styled-components": "0.1.1",
+    "stylelint-declaration-block-no-ignored-properties": "1.1.0",
+    "stylelint-order": "1.0.0",
+    "stylelint-processor-styled-components": "1.5.0"
+  }
 }
