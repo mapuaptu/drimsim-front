@@ -26,7 +26,6 @@ const User = ({ match }) => {
       <BackLink />
       <Query query={GET_USER} variables={{ id }}>
         {({ loading, data }) => {
-          console.log(data);
           return loading ? null : <UserProfile user={data.user} />;
         }}
       </Query>
