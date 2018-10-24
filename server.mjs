@@ -1,7 +1,13 @@
 import express from 'express';
+import Apollo from 'apollo-server-express';
+import typeDefs from './graphql/types';
+import resolvers from './graphql/resolvers';
 
-const app = express();
 const port = process.env.PORT || 5000;
+const app = express();
+const server = new Apollo.ApolloServer({ typeDefs, resolvers });
+
+server.applyMiddleware({ app });
 
 app.use(express.static(`./user_app`));
 
