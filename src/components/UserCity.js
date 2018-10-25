@@ -12,8 +12,9 @@ const UPDATE_USER_CITY = gql`
 `;
 
 const GET_USER = gql`
-  query User($id: ID!) {
+  query User($id: Int!) {
     user(id: $id) {
+      id
       city
     }
   }
@@ -48,6 +49,7 @@ class UserCity extends PureComponent {
             <Mutation
               mutation={UPDATE_USER_CITY}
               variables={{ userID: id, city: this.state.inputCity }}
+              refetchQueries={[{ query: GET_USER, variables: { id: parseInt(id, 10) } }]}
             >
               {updateUserCity => {
                 return (
