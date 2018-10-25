@@ -13,8 +13,15 @@ const StyledUser = styled.div`
   background-color: #fff;
 
   .user-inner {
+    position: relative;
+    left: -9px;
     padding-top: 80px;
     width: 500px;
+
+    @media (max-width: 560px) {
+      left: 0;
+      width: 100%;
+    }
   }
 `;
 
