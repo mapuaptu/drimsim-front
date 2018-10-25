@@ -17,6 +17,14 @@ const StyledHome = styled.div`
     padding-top: 49px;
     padding-bottom: 118px;
     width: 700px;
+
+    @media (max-width: 750px) {
+      width: 460px;
+    }
+
+    @media (max-width: 550px) {
+      width: 220px;
+    }
   }
 `;
 
