@@ -1,17 +1,15 @@
 import React, { PureComponent } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import styledNormalize from 'styled-normalize';
+import { Normalize } from 'styled-normalize';
 import Home from './pages/Home';
 import User from './pages/User';
 
 // TODO везде проверть Fragment и логику
 
 const GlobalStyles = createGlobalStyle`
-  ${styledNormalize}
-
   *,
   *::before,
   *::after {
@@ -37,15 +35,16 @@ class App extends PureComponent {
   render() {
     return (
       <ApolloProvider client={client}>
+        <Normalize />
         <GlobalStyles />
-        <BrowserRouter>
+        <Router>
           <div className="App">
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/user/:id" component={User} />
             </Switch>
           </div>
-        </BrowserRouter>
+        </Router>
       </ApolloProvider>
     );
   }

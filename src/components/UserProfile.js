@@ -1,5 +1,5 @@
 import React from 'react';
-import UserCountry from './UserCountry';
+import UserCity from './UserCity';
 import image from '../img/user.png';
 
 const UserProfile = ({ user }) => {
@@ -11,7 +11,7 @@ const UserProfile = ({ user }) => {
       <div className="user-name">{user.name}</div>
       <div className="user-age">{user.age}</div>
 
-      <UserCountry user={user} />
+      <UserCity user={user} />
 
       <div className="user-knowledge">
         {user.knowledge.map((item, index) => {

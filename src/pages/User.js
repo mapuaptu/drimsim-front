@@ -10,6 +10,7 @@ const GET_USER = gql`
       id
       name
       age
+      city
       knowledge {
         language
         frameworks
@@ -24,6 +25,7 @@ const User = ({ match }) => {
   return (
     <div>
       <BackLink />
+      {/* TODO следать заглушку когда вводим id типа строка или не валидное число */}
       <Query query={GET_USER} variables={{ id }}>
         {({ loading, data }) => {
           return loading ? null : <UserProfile user={data.user} />;

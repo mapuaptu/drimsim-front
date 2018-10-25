@@ -8,11 +8,12 @@ const resolvers = {
   },
   Mutation: {
     updateUserCity(_, { userID, city }) {
-      const result = users.find(user => user.id === userID);
+      const result = users.find(user => user.id == userID);
       if (!result) {
         throw new Error(`Couldn't find user with id ${userID}`);
       }
       result.city = city;
+      console.log(users);
       return result;
     },
   },
