@@ -3,6 +3,20 @@ import UserProfile from '../components/UserProfile';
 import BackLink from '../components/BackLink';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import styled from 'styled-components';
+
+const StyledUser = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #fff;
+
+  .user-inner {
+    padding-top: 80px;
+    width: 500px;
+  }
+`;
 
 const GET_USER = gql`
   query User($id: Int!) {
@@ -23,15 +37,16 @@ const User = ({ match }) => {
   const id = parseInt(match.params.id, 10);
 
   return (
-    <div>
+    <StyledUser>
       <BackLink />
-      {/* TODO следать заглушку когда вводим id типа строка или не валидное число */}
-      <Query query={GET_USER} variables={{ id }}>
-        {({ loading, data }) => {
-          return loading ? null : <UserProfile user={data.user} />;
-        }}
-      </Query>
-    </div>
+      <div className="user-inner">
+        <Query query={GET_USER} variables={{ id }}>
+          {({ loading, data }) => {
+            return loading ? null : <UserProfile user={data.user} />;
+          }}
+        </Query>
+      </div>
+    </StyledUser>
   );
 };
 

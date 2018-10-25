@@ -22,6 +22,8 @@ const StyledUserCard = styled.div`
 
   .user-image {
     margin-bottom: 22px;
+    border: 1px solid #e1e1e1;
+    border-radius: 50%;
     width: 100px;
     height: 100px;
 
