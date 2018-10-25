@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 
 const UPDATE_USER_CITY = gql`
   mutation UpdateUserCity($userID: ID!, $city: String!) {
@@ -11,47 +11,71 @@ const UPDATE_USER_CITY = gql`
   }
 `;
 
-// TODO Дописать логику Мутаций, разобраться с проблеммой ID!
+const GET_USER = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      city
+    }
+  }
+`;
+
+// TODO реализовать скрытие формы и вывод города - посути это localstate - нужно использовать apollo link state
 
 class UserCity extends PureComponent {
   state = {
-    city: '',
+    inputCity: '',
   };
 
   handleInput = event => {
-    const city = event.target.value;
+    const inputCity = event.target.value;
 
     this.setState(() => ({
-      city,
+      inputCity,
     }));
   };
 
   render() {
-    const { id, city } = this.props.user;
+    const { id } = this.props;
 
-    return city ? (
-      <div className="user-city">{city}</div>
-    ) : (
-      <Mutation mutation={UPDATE_USER_CITY} variables={{ userID: id, city: this.state.city }}>
-        {(updateUserCity, { loading, data }) => {
-          return (
-            <form
-              onSubmit={async event => {
-                event.preventDefault();
-                await updateUserCity();
-                return this.setState(() => ({
-                  city: '',
-                }));
-              }}
-              className="user-city"
+    return (
+      <Query query={GET_USER} variables={{ id: parseInt(id, 10) }}>
+        {({ loading, data }) => {
+          const { user } = data;
+
+          return loading ? null : user.city ? (
+            <div className="user-city">{user.city}</div>
+          ) : (
+            <Mutation
+              mutation={UPDATE_USER_CITY}
+              variables={{ userID: id, city: this.state.inputCity }}
             >
-              <label htmlFor="city">Country</label>
-              <input onChange={this.handleInput} value={this.state.city} type="text" id="city" />
-              <button>Submit</button>
-            </form>
+              {updateUserCity => {
+                return (
+                  <form
+                    onSubmit={async event => {
+                      event.preventDefault();
+                      await updateUserCity();
+                      return this.setState(() => ({
+                        inputCity: '',
+                      }));
+                    }}
+                    className="user-city"
+                  >
+                    <label htmlFor="city">Country</label>
+                    <input
+                      onChange={this.handleInput}
+                      value={this.state.inputCity}
+                      type="text"
+                      id="city"
+                    />
+                    <button>Submit</button>
+                  </form>
+                );
+              }}
+            </Mutation>
           );
         }}
-      </Mutation>
+      </Query>
     );
   }
 }

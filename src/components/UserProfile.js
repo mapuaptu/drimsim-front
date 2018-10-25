@@ -11,7 +11,7 @@ const UserProfile = ({ user }) => {
       <div className="user-name">{user.name}</div>
       <div className="user-age">{user.age}</div>
 
-      <UserCity user={user} />
+      <UserCity id={user.id} />
 
       <div className="user-knowledge">
         {user.knowledge.map((item, index) => {
