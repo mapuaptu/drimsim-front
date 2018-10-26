@@ -8,7 +8,6 @@
 
 # production
 /build
-/user_app
 
 # misc
 .vscode
