@@ -7,6 +7,7 @@ const StyledBackLink = styled.div`
   position: absolute;
   left: 40px;
   top: 30px;
+  transition: 0.2s linear;
 
   a {
     display: flex;
@@ -23,6 +24,12 @@ const StyledBackLink = styled.div`
     font-weight: 700;
     font-size: 18px;
     line-height: 21px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+    transform: translateX(-5px);
+    transition: 0.2s linear;
   }
 `;
 

@@ -91,6 +91,13 @@ const StyledUserCity = styled.div`
       height: 30px;
       color: #fff;
       background-color: #47b2ff;
+      transition: 0.2s linear;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+        transition: 0.2s linear;
+      }
     }
 
     @media (max-width: 560px) {
@@ -153,10 +160,12 @@ class UserCity extends PureComponent {
                     <form
                       onSubmit={async event => {
                         event.preventDefault();
-                        await updateUserCity();
-                        return this.setState(() => ({
-                          inputCity: '',
-                        }));
+                        if (this.state.inputCity) {
+                          await updateUserCity();
+                          return this.setState(() => ({
+                            inputCity: '',
+                          }));
+                        }
                       }}
                       className="user-city"
                     >

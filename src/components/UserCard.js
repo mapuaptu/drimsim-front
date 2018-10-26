@@ -10,6 +10,7 @@ const StyledUserCard = styled.div`
   min-height: 292px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   background-color: #fff;
+  transition: 0.2s linear;
 
   a {
     display: flex;
@@ -54,6 +55,12 @@ const StyledUserCard = styled.div`
     line-height: 16px;
     text-align: center;
     color: #000;
+  }
+
+  &:hover {
+    opacity: 0.8;
+    transform: translateY(5px);
+    transition: 0.2s linear;
   }
 `;
 
