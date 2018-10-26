@@ -51,7 +51,7 @@ class Home extends PureComponent {
               const { allUsers } = data;
 
               return loading ? (
-                <div>{null}</div>
+                <div>Loading...</div>
               ) : (
                 <>
                   {allUsers.map(user => (

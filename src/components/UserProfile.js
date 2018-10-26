@@ -2,6 +2,7 @@ import React from 'react';
 import UserCity from './UserCity';
 import image from '../img/user.png';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledUserProfile = styled.div`
   display: flex;
@@ -79,6 +80,20 @@ const UserProfile = ({ user }) => {
       </div>
     </StyledUserProfile>
   );
+};
+
+UserProfile.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    city: PropTypes.string,
+    knowledge: PropTypes.arrayOf(
+      PropTypes.shape({
+        language: PropTypes.string,
+        frameworks: PropTypes.arrayOf(PropTypes.string),
+      }),
+    ),
+  }),
 };
 
 export default UserProfile;

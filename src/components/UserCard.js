@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import image from '../img/user.png';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledUserCard = styled.div`
   margin-bottom: 20px;
@@ -77,6 +78,20 @@ const UserCard = ({ user }) => {
       </Link>
     </StyledUserCard>
   );
+};
+
+UserCard.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    city: PropTypes.string,
+    knowledge: PropTypes.arrayOf(
+      PropTypes.shape({
+        language: PropTypes.string,
+        frameworks: PropTypes.arrayOf(PropTypes.string),
+      }),
+    ),
+  }),
 };
 
 export default UserCard;

@@ -31,7 +31,6 @@ const GET_USER = gql`
       id
       name
       age
-      city
       knowledge {
         language
         frameworks
@@ -49,7 +48,7 @@ const User = ({ match }) => {
       <div className="user-inner">
         <Query query={GET_USER} variables={{ id }}>
           {({ loading, data }) => {
-            return loading ? null : <UserProfile user={data.user} />;
+            return loading ? <div>Loading...</div> : <UserProfile user={data.user} />;
           }}
         </Query>
       </div>

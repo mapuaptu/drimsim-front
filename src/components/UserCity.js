@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import gql from 'graphql-tag';
 import { Mutation, Query } from 'react-apollo';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledUserCity = styled.div`
   display: flex;
@@ -147,7 +148,9 @@ class UserCity extends PureComponent {
           {({ loading, data }) => {
             const { user } = data;
 
-            return loading ? null : user.city ? (
+            return loading ? (
+              <div>Loading...</div>
+            ) : user.city ? (
               <div className="user-city">{user.city}</div>
             ) : (
               <Mutation
@@ -188,5 +191,13 @@ class UserCity extends PureComponent {
     );
   }
 }
+
+UserCity.propTypes = {
+  id: PropTypes.string,
+};
+
+UserCity.defaultProps = {
+  id: '1',
+};
 
 export default UserCity;

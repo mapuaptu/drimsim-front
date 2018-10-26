@@ -7,8 +7,6 @@ import { Normalize } from 'styled-normalize';
 import Home from './pages/Home';
 import User from './pages/User';
 
-// TODO везде проверть Fragment и логику
-
 const GlobalStyles = createGlobalStyle`
   *,
   *::before,
