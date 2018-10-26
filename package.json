@@ -22,7 +22,7 @@
   "scripts": {
     "start": "node --experimental-modules server.mjs",
     "dev": "react-app-rewired start",
-    "build": "react-scripts build && mv build user_app",
+    "build": "react-app-rewired build && mv build user_app",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "stylelint": "stylelint **/*.js",
