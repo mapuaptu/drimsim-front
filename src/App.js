@@ -7,8 +7,6 @@ import { Normalize } from 'styled-normalize';
 import Home from './pages/Home';
 import User from './pages/User';
 
-// TODO везде проверть Fragment и логику
-
 const GlobalStyles = createGlobalStyle`
   *,
   *::before,
@@ -23,13 +21,25 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: "Roboto", sans-serif;
-    background-color: #e5e5e5;
+    font-family: 'Roboto', sans-serif;
   }
 `;
 
-// TODO убрать перед деплоем порт
-const client = new ApolloClient({ uri: 'http://localhost:5000/graphql' });
+let client;
+
+switch (process.env.NODE_ENV) {
+  case 'development': {
+    client = new ApolloClient({ uri: 'http://localhost:5000/graphql' });
+    break;
+  }
+  case 'production': {
+    client = new ApolloClient({ uri: '/graphql' });
+    break;
+  }
+  default: {
+    break;
+  }
+}
 
 class App extends PureComponent {
   render() {
