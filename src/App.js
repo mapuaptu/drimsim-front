@@ -25,8 +25,21 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-// TODO убрать перед деплоем порт
-const client = new ApolloClient({ uri: 'http://localhost:5000/graphql' });
+let client;
+
+switch (process.env.NODE_ENV) {
+  case 'development': {
+    client = new ApolloClient({ uri: 'http://localhost:5000/graphql' });
+    break;
+  }
+  case 'production': {
+    client = new ApolloClient({ uri: '/graphql' });
+    break;
+  }
+  default: {
+    break;
+  }
+}
 
 class App extends PureComponent {
   render() {
