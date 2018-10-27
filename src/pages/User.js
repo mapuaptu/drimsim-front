@@ -40,7 +40,7 @@ const GET_USER = gql`
 `;
 
 const User = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+  const id = parseInt(match.params.id, 10) || 1;
 
   return (
     <StyledUser>
