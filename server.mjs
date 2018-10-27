@@ -12,7 +12,9 @@ server.applyMiddleware({ app });
 app.use(express.static(`./user_app`));
 
 app.get('*', (req, res) => {
-  res.sendFile(`./user_app/index.html`);
+  res.sendFile(`./user_app/index.html`, {
+    root: './',
+  });
 });
 
 app.listen(port, () => {
