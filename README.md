@@ -5,4 +5,4 @@
 3. Для линта `css` используется `stylelint`, с плагинами для `styled-components`.
 4. Для линта `js` используется встроенный в `create-react-app` - `eslint`.
 5. Обновил ваш сервер, тк пакеты сильно устарели. Бизнес логику не изменил.
-6. Сайт работает на https://drimsim-front.herokuapp.com/
+6. Сайт работает на https://drimsim-front.herokuapp.com/ (На `heroku` free аккаунт - требуется время что бы сайт проснулся)
