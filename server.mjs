@@ -11,7 +11,7 @@ server.applyMiddleware({ app });
 
 app.use(express.static(`./user_app`));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(`./user_app/index.html`);
 });
 
