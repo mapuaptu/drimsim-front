@@ -23,7 +23,7 @@
   "scripts": {
     "start": "node --experimental-modules server.mjs",
     "dev": "react-app-rewired start",
-    "build": "react-app-rewired build && mv build user_app",
+    "build": "react-app-rewired build && rm -rf user_app | mv build user_app",
     "eject": "react-scripts eject",
     "stylelint": "stylelint ./src/**/*.js",
     "prettier": "prettier --write {src,server}/**/*.{mjs,js}",
