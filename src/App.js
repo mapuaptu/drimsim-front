@@ -6,6 +6,7 @@ import { createGlobalStyle } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 import Home from './pages/Home';
 import User from './pages/User';
+import NotFound from './pages/NotFound';
 
 const GlobalStyles = createGlobalStyle`
   *,
@@ -52,6 +53,7 @@ class App extends PureComponent {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/user/:id" component={User} />
+              <Route path="*" component={NotFound} />
             </Switch>
           </div>
         </Router>
