@@ -1,8 +1,8 @@
 import React from 'react';
-import UserCity from './UserCity';
 import image from '../img/user.png';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import UserCity from './UserCity';
 
 const StyledUserProfile = styled.div`
   display: flex;
@@ -65,9 +65,7 @@ const UserProfile = ({ user }) => {
       </div>
       <div className="user-name">{user.name}</div>
       <div className="user-age">{user.age} years</div>
-
       <UserCity id={user.id} />
-
       <div className="user-knowledge">
         {user.knowledge.map((item, index) => {
           return (
