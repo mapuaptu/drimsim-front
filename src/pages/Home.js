@@ -3,6 +3,7 @@ import UserCard from '../components/UserCard';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
+import { TimelineLite } from 'gsap';
 
 const StyledHome = styled.div`
   display: flex;
@@ -42,11 +43,39 @@ const GET_ALL_USERS = gql`
 `;
 
 class Home extends PureComponent {
+  cards = [];
+
+  play() {
+    const time = 0.3;
+    const timeline = new TimelineLite({ paused: true });
+    const { cards } = this;
+
+    timeline.staggerFrom(
+      cards,
+      time,
+      {
+        y: 50,
+        autoAlpha: 0,
+      },
+      0.05,
+    );
+    timeline.play();
+  }
+
+  componentDidMount = () => {
+    this.play();
+  };
+
   render() {
     return (
       <StyledHome className="home">
         <div className="home-inner">
-          <Query query={GET_ALL_USERS}>
+          <Query
+            query={GET_ALL_USERS}
+            onCompleted={() => {
+              this.play();
+            }}
+          >
             {({ loading, data }) => {
               const { allUsers } = data;
 
@@ -54,8 +83,15 @@ class Home extends PureComponent {
                 <div>Loading...</div>
               ) : (
                 <>
-                  {allUsers.map(user => (
-                    <UserCard user={user} key={user.id} />
+                  {allUsers.map((user, index) => (
+                    <div
+                      ref={node => {
+                        this.cards[index] = node;
+                      }}
+                      key={user.id}
+                    >
+                      <UserCard user={user} />
+                    </div>
                   ))}
                 </>
               );
